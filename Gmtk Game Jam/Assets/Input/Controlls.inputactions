@@ -1,0 +1,46 @@
+{
+    "name": "Controlls",
+    "maps": [
+        {
+            "name": "KeyBoard",
+            "id": "cf693e06-fbed-49ff-879d-1b6db71d26de",
+            "actions": [
+                {
+                    "name": "Shrink",
+                    "type": "Button",
+                    "id": "3bf9484a-20ca-439c-9edd-2a80440920bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c0e013a4-74ad-44f3-babc-50becd6d701d",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Shrink",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
