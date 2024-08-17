@@ -54,7 +54,7 @@ public class PlayerHealth : BaseHealth
     {
         _lagFillAmount = Mathf.Lerp(_healthBar.healthBarLag.fillAmount,
             _healthBar.healthBar.fillAmount, _healthBar.healthBarLagDuration * Time.deltaTime);
-        Debug.Log(_lagFillAmount);
+       // Debug.Log(_lagFillAmount);
         _healthBar.healthBarLag.fillAmount = _lagFillAmount;
         if (_healthBar.healthBar.fillAmount == _healthBar.healthBarLag.fillAmount)
         {
