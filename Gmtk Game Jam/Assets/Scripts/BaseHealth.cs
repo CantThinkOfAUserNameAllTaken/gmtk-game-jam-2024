@@ -8,23 +8,6 @@ public abstract class BaseHealth : MonoBehaviour
 
 
     [SerializeField]
-    private int _maxHealth;
-
-    private int _currentHealth;
-
-    public delegate void OnHealthChange();
-
-    public OnHealthChange OnHealthChanged;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _currentHealth = _maxHealth;
-    }
-
-    void DamageTaken(int damage)
-    {
-        _currentHealth -= damage;
-        if (_currentHealth <= 0)
     protected int MaxHealth;
 
     protected int CurrentHealth;
@@ -36,6 +19,8 @@ public abstract class BaseHealth : MonoBehaviour
     public Event OnHealthIncrease;
 
     public Event OnHealthDecrease;
+    // Start is called before the first frame update
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -50,9 +35,6 @@ public abstract class BaseHealth : MonoBehaviour
             Death();
         }
         OnHealthChanged();
-    }
-
-    public abstract void Death();
         OnHealthDecrease();
     }
 
