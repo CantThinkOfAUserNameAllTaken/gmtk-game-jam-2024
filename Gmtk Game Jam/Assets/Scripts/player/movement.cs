@@ -1,22 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+
 
 public class movement : MonoBehaviour
 {
+    
     public float speed;
+    public InputActionReference inpt;
+    private Vector2 directions;
     public Rigidbody2D rb;
-    // Start is called before the first frame update
+
     void Start()
     {
         
+
+    }
+    public void Update()
+    {
+        directions = inpt.action.ReadValue<Vector2>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void FixedUpdate()
     {
-        // get the input information & summed it with position
-        Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed / 100f;
-        rb.MovePosition(rb.position + direction);
+        rb.velocity = new Vector2(directions.x, directions.y) * speed;
+    }
+
+    public void make_a_move(Vector2 move)
+    {
+        Debug.Log(move);
     }
 }
