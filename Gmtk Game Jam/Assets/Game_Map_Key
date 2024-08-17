@@ -1,0 +1,25 @@
+c1 = Player start, no enemies
+c2 = first shrink tech, no enemies, shrink neccessary to continue
+c3 = first room with single enemy, player must sneak past to c4 in order to grow to normal size
+c4 = grow tech, no enemies
+c4a = 2 enemies
+c5 = 2 enemies, path to c6(requires shrink)  and c7
+c6 = path forward, 2 enemies
+c7 = shrink tech, no enemies, health restore, no ammo
+c8 = 1 enemy, path to c10
+c9 = grow tech, no enemies, ammo restore, no health
+c10 = 3 enemies, path to c11
+c11 = 2 enemies, path to c12
+c12 = 4 enemies, path to c13
+c13 = 2 enemies, path to c14 
+c14 = 1 enemy, path to c15, path to 16 (requires shrink)
+c15 = shrink tech, no enemies
+c16 = 3 enemies, path to c17, path to c18 (requires shrink)
+c17 = grow tech, no enemies
+c18 = 2 enemies, path to c19, path to c20
+c19 = shrink tech, no enemies
+c20 = 4 enemies
+c21 = grow/shrink tech, full health/ammo restore
+c22 = boss fight
+c23 = player exit, game ends
+
