@@ -8,30 +8,42 @@ public abstract class BaseHealth : MonoBehaviour
 
 
     [SerializeField]
-    private int _maxHealth;
+    protected int MaxHealth;
 
-    private int _currentHealth;
+    protected int CurrentHealth;
 
-    public delegate void OnHealthChange();
+    public delegate void Event();
 
-    public OnHealthChange OnHealthChanged;
+    public Event OnHealthChanged;
+
+    public Event OnHealthIncrease;
+
+    public Event OnHealthDecrease;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        _currentHealth = _maxHealth;
+        CurrentHealth = MaxHealth;
     }
 
-    void DamageTaken(int damage)
+    public virtual void DamageTaken(int damage)
     {
-        _currentHealth -= damage;
-        if (_currentHealth <= 0)
+        CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
         {
             Death();
         }
         OnHealthChanged();
+        OnHealthDecrease();
     }
 
-    public abstract void Death();
+    public void Heal(int healAmount)
+    {
+        CurrentHealth += healAmount;
+        OnHealthChanged();
+        OnHealthIncrease();
+    }
+
+    protected abstract void Death();
     
 
     
