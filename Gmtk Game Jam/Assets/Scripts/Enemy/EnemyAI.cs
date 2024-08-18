@@ -8,9 +8,16 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
     public float chaseRange = 10f;
     public float attackRange = 2f;
-    public float moveSpeed = 5f;
 
-    private Vector3 startingPosition;
+    private EnemyMovement enemyMovement;
+    private Enemy enemy;
+    private EnemyAttack enemyAttack; 
+    private void Start()
+    {
+        enemyMovement = GetComponent<EnemyMovement>();
+        enemy = GetComponent<Enemy>();
+        enemyAttack = GetComponent<EnemyAttack>();
+    }
 
     void Update()
     {
@@ -30,23 +37,42 @@ public class EnemyAI : MonoBehaviour
         StateChange();
     }
 
+    public void SetState(EnemyState newState)
+    {
+        if (newState != currentState)
+        {
+            currentState = newState;
+        }
+        
+        // Additional logic can be added here if needed, e.g., resetting animations
+    }
     void HandleIdleState()
     {
         // Remain still
-        transform.position = transform.position;
+        enemyMovement.chasePlayer = false;
     }
 
     void HandleChaseState()
     {
         // Move towards the player
-        Vector3 direction = (player.position - transform.position).normalized;
-        transform.position += direction * moveSpeed * Time.deltaTime;
+        if (enemyMovement.canEnemyMove)
+        {
+            enemyMovement.chasePlayer = true;
+        }
     }
 
     void HandleAttackState()
     {
         // Attack logic goes here, e.g., dealing damage to the player
-        Debug.Log("Attacking the player!");
+        enemyMovement.chasePlayer = false;
+        enemyAttack.SetCanAttack(true);
+    }
+
+    void ShootTorpedo()
+    {
+        GameObject torpedo = Instantiate(enemy.torpedoPrefab, enemy.torpedoSpawnPoint.position, Quaternion.identity);
+        Torpedo torpedoScript = torpedo.GetComponent<Torpedo>();
+        torpedoScript.SetTargetPosition(player.position);
     }
 
     void StateChange()
