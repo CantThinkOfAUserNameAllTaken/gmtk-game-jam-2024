@@ -337,6 +337,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shrinkSize: {x: 2, y: 2, z: 0}
   _shrinkSpeed: 1
+--- !u!114 &556221996 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3834977927766102835, guid: 486da0035e225e74ebfa420a454ff71f, type: 3}
+  m_PrefabInstance: {fileID: 3077941444004539665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556221989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f8d64c42858bf499ec902997cb599f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &556222000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556221989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: fbe31d57071086b478b877f706c9cdf1, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3bf9484a-20ca-439c-9edd-2a80440920bf
+    m_ActionName: 'KeyBoard/Shrink[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 556221996}
+        m_TargetAssemblyTypeName: movement, Assembly-CSharp
+        m_MethodName: UpdateMovemenntDirection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cb0bf7c6-5518-46f8-b3cd-d415c144489d
+    m_ActionName: 'KeyBoard/movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: KeyBoard
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1021181322
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +767,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5722065335657947549, guid: 486da0035e225e74ebfa420a454ff71f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 556221995}
+    - targetCorrespondingSourceObject: {fileID: 5722065335657947549, guid: 486da0035e225e74ebfa420a454ff71f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 556222000}
   m_SourcePrefab: {fileID: 100100000, guid: 486da0035e225e74ebfa420a454ff71f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
