@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public EnemyState currentState = EnemyState.IDLE;
-    public Transform player;
-    public float chaseRange = 10f;
-    public float attackRange = 2f;
 
-    private EnemyMovement enemyMovement;
+    public EnemyState currentState;
+    private Transform player;
+    private float chaseRange;
+    private float attackRange;
+
     private Enemy enemy;
-    private EnemyAttack enemyAttack; 
-    private void Start()
+
+    public void Initialize(Enemy enemyReference, float chaseRangeVal, float attackRangeVal)
     {
-        enemyMovement = GetComponent<EnemyMovement>();
-        enemy = GetComponent<Enemy>();
-        enemyAttack = GetComponent<EnemyAttack>();
+        enemy = enemyReference;
+        currentState = EnemyState.IDLE;
+        chaseRange = chaseRangeVal;
+        attackRange = attackRangeVal;
+
+        player = enemy.GetPlayer();
     }
 
     void Update()
@@ -43,36 +46,28 @@ public class EnemyAI : MonoBehaviour
         {
             currentState = newState;
         }
-        
-        // Additional logic can be added here if needed, e.g., resetting animations
     }
+
     void HandleIdleState()
     {
         // Remain still
-        enemyMovement.chasePlayer = false;
+        enemy.GetEnemyMovement().chasePlayer = false;
     }
 
     void HandleChaseState()
     {
         // Move towards the player
-        if (enemyMovement.canEnemyMove)
+        if (enemy.GetEnemyMovement().canEnemyMove)
         {
-            enemyMovement.chasePlayer = true;
+            enemy.GetEnemyMovement().chasePlayer = true;
         }
     }
 
     void HandleAttackState()
     {
-        // Attack logic goes here, e.g., dealing damage to the player
-        enemyMovement.chasePlayer = false;
-        enemyAttack.SetCanAttack(true);
-    }
-
-    void ShootTorpedo()
-    {
-        GameObject torpedo = Instantiate(enemy.torpedoPrefab, enemy.torpedoSpawnPoint.position, Quaternion.identity);
-        Torpedo torpedoScript = torpedo.GetComponent<Torpedo>();
-        torpedoScript.SetTargetPosition(player.position);
+        // Attack logic goes here
+        enemy.GetEnemyMovement().chasePlayer = false;
+        enemy.GetEnemyAttack().SetCanAttack(true);
     }
 
     void StateChange()
@@ -81,16 +76,15 @@ public class EnemyAI : MonoBehaviour
 
         if (distanceToPlayer <= attackRange)
         {
-            currentState = EnemyState.ATTACK;
-
+            SetState(EnemyState.ATTACK);
         }
         else if (distanceToPlayer <= chaseRange)
         {
-            currentState = EnemyState.CHASE;
+            SetState(EnemyState.CHASE);
         }
         else
         {
-            currentState = EnemyState.IDLE;
+            SetState(EnemyState.IDLE);
         }
     }
 }
