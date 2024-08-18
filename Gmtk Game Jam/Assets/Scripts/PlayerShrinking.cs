@@ -7,7 +7,9 @@ public class PlayerShrinking : MonoBehaviour
 {
     [SerializeField]
     private Vector3 _shrinkSize;
-    
+    [SerializeField]
+    private Vector3 _shrinkSize_light_sourse;
+
     private PlayerInput _playerInput;
 
     private delegate void Event();
@@ -19,23 +21,35 @@ public class PlayerShrinking : MonoBehaviour
 
 
     private Vector3 _originalSize;
+    private Vector3 _originalSize_light_sourse;
 
     private bool _keyPressed = false;
+
+    public GameObject light_beam;
     // Start is called before the first frame update
     void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
         _originalSize = transform.localScale;
+        _originalSize_light_sourse = light_beam.transform.localScale;
         _currentState = Grown;
     }
 
     private void Shrinking()
     {
         LerpToSize(_shrinkSize, transform.localScale);
+        Light_LerpSize(_shrinkSize_light_sourse, light_beam.transform.localScale);
         if (transform.localScale == _shrinkSize)
         {
-            _keyPressed = false;
-            _currentState = Shrunk;
+            
+                if(light_beam.transform.localScale == _shrinkSize_light_sourse)
+                {
+                    _keyPressed = false;
+                    _currentState = Shrunk;
+                }
+                
+            
+            
         }
     }
 
@@ -47,10 +61,16 @@ public class PlayerShrinking : MonoBehaviour
     private void Growing()
     {
         LerpToSize(_originalSize, transform.localScale);
+        Light_LerpSize(_originalSize_light_sourse, light_beam.transform.localScale);
         if (transform.localScale == _originalSize)
         {
-            _keyPressed = false;
-            _currentState = Grown;
+           
+                if(light_beam.transform.localScale == _originalSize_light_sourse)
+                {
+                    _keyPressed = false;
+                    _currentState = Grown;
+                }
+            
         }
     }
 
@@ -62,6 +82,17 @@ public class PlayerShrinking : MonoBehaviour
     {
         Vector3 newSize = Vector3.MoveTowards(originalSize, toSize, _shrinkSpeed * Time.deltaTime);
         transform.localScale = newSize;
+
+      
+    }
+
+    void Light_LerpSize(Vector3 light_tosize, Vector3 light_originalSize)
+    {
+        float speed_plus = 100;
+
+
+         Vector3 newSize_light = Vector3.MoveTowards(light_originalSize, light_tosize, _shrinkSpeed * speed_plus * Time.deltaTime);
+            light_beam.transform.localScale = newSize_light;
     }
 
     public void OnShrinkCalled()
