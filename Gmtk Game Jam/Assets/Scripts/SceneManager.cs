@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneManager : MonoBehaviour
 {
+    [SerializeField]
+    private intVariable _lastScene;
     public void NextScene()
     {
        int SceneNumber = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1;
@@ -12,6 +14,11 @@ public class SceneManager : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(SceneNumber);
         }
+    }
+
+    public void Restart()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(_lastScene.HeldData);
     }
 
     public void Quit()
