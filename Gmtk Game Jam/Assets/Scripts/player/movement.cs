@@ -15,6 +15,7 @@ public class movement : MonoBehaviour
 
     public Vector2 mouse_dir;
     public GameObject light_glow;
+    public InputActionReference inpt;
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class movement : MonoBehaviour
 
     }
 
-    public void UpdateMovemenntDirection(CallbackContext context)
+    public void Update()
     {
         directions = inpt.action.ReadValue<Vector2>();
 
