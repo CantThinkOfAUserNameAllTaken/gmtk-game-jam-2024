@@ -65,9 +65,9 @@ public class Projectile : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         _currantSpeed = Mathf.Lerp(_currantSpeed, _maxSpeed, _rampUpSpeed * Time.deltaTime);
-        _rb.velocity = _fireDirection * _currantSpeed * Time.deltaTime;
+        _rb.velocity = _fireDirection * _currantSpeed * Time.fixedDeltaTime;
     }
 }

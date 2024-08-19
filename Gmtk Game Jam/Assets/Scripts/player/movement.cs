@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -39,5 +40,11 @@ public class movement : MonoBehaviour
         light_glow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
 
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Finish")
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Victory");
+        }
+    }
 }
