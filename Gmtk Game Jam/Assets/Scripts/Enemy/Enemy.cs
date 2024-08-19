@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool _chasePlayer = false;
     [SerializeField] private Transform _player;
 
-    private EnemyMovement _enemyMovement;
+    private EnemyNavMesh _enemyMovement;
 
     [Header("Attack Settings")]
     [SerializeField] private float _attackCooldown;
@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _enemyAI = GetComponent<EnemyAI>();
-        _enemyMovement = GetComponent<EnemyMovement>();
+        _enemyMovement = GetComponent<EnemyNavMesh>();
         _enemyAttack = GetComponent<EnemyAttack>();
 
         InitializeComponents();
@@ -44,9 +44,6 @@ public class Enemy : MonoBehaviour
     {
         // Initialize AI component
         _enemyAI.Initialize(this, _chaseRange, _attackRange);
-
-        // Initialize Movement component
-        _enemyMovement.Initialize(this, _moveSpeed, _rotationSpeed, _enemyType, _player);
 
         // Initialize Attack component
         _enemyAttack.Initialize(this, _attackCooldown, _nextAttackTime);
@@ -89,7 +86,7 @@ public class Enemy : MonoBehaviour
         return _enemyAI;
     }
 
-    public EnemyMovement GetEnemyMovement()
+    public EnemyNavMesh GetEnemyMovement()
     {
         return _enemyMovement;
     }

@@ -114,7 +114,7 @@ public class PlayerShrinking : MonoBehaviour
     {
         Collider2D hit = Physics2D.OverlapBox(transform.position, _originalSize, 0, _layerToHit);
 
-        if (!hit.)
+        if (!hit)
         {
             _keyPressed = true;
         }
