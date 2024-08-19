@@ -1177,6 +1177,9 @@ MonoBehaviour:
   light_beam: {fileID: 902289958}
   _onShrunk: {fileID: 11400000, guid: 074c4d581be3de9499a0b3620009e1d8, type: 2}
   _onGrown: {fileID: 11400000, guid: 41a09a6a88bbed74e96357ec45f083b0, type: 2}
+  _layerToHit:
+    serializedVersion: 2
+    m_Bits: 183
 --- !u!114 &1716870169
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -32,6 +32,10 @@ public class PlayerShrinking : MonoBehaviour
 
     [SerializeField]
     private GameEvent<int> _onGrown;
+
+    [SerializeField]
+    LayerMask _layerToHit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,7 +112,12 @@ public class PlayerShrinking : MonoBehaviour
 
     public void OnShrinkCalled()
     {
-        _keyPressed = true;
+        Collider2D hit = Physics2D.OverlapBox(transform.position, _originalSize, 0, _layerToHit);
+
+        if (!hit.)
+        {
+            _keyPressed = true;
+        }
     }
 
     // Update is called once per frame
