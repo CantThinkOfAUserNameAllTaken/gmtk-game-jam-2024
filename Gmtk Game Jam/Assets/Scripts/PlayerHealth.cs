@@ -22,6 +22,9 @@ public class PlayerHealth : BaseHealth
     private float _lagFillAmount;
 
     private Event OnUpdate;
+
+    [SerializeField]
+    private intVariable _sceneOnDeath;
     // Start is called before the first frame update
   protected override void Start()
     {
@@ -64,7 +67,8 @@ public class PlayerHealth : BaseHealth
 
     protected override void Death()
     {
-        
+        _sceneOnDeath.HeldData = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
 
     public override void DamageTaken(int damage)
