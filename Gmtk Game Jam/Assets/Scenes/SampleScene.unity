@@ -995,6 +995,8 @@ GameObject:
   - component: {fileID: 1716870170}
   - component: {fileID: 1716870171}
   - component: {fileID: 1716870172}
+  - component: {fileID: 1716870174}
+  - component: {fileID: 1716870173}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1173,6 +1175,8 @@ MonoBehaviour:
   _shrinkSize_light_sourse: {x: 40, y: 230, z: 0}
   _shrinkSpeed: 5
   light_beam: {fileID: 902289958}
+  _onShrunk: {fileID: 11400000, guid: 074c4d581be3de9499a0b3620009e1d8, type: 2}
+  _onGrown: {fileID: 11400000, guid: 41a09a6a88bbed74e96357ec45f083b0, type: 2}
 --- !u!114 &1716870169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,6 +1271,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectile: {fileID: 8890506178336879488, guid: e2e43f8cc92ac1046aca08d95acd2482, type: 3}
+  _shootingDelay: 1
+--- !u!114 &1716870173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716870163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9b93b09f0034b449c3f992d99fac14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 41a09a6a88bbed74e96357ec45f083b0, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1716870172}
+        m_TargetAssemblyTypeName: PlayerFireProjectile, Assembly-CSharp
+        m_MethodName: SetGrown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1716870174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716870163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b9b93b09f0034b449c3f992d99fac14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 074c4d581be3de9499a0b3620009e1d8, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1716870172}
+        m_TargetAssemblyTypeName: PlayerFireProjectile, Assembly-CSharp
+        m_MethodName: SetShrunk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1801516717
 GameObject:
   m_ObjectHideFlags: 0

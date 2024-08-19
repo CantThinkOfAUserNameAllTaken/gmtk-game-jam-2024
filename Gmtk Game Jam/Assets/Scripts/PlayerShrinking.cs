@@ -26,6 +26,12 @@ public class PlayerShrinking : MonoBehaviour
     private bool _keyPressed = false;
 
     public GameObject light_beam;
+
+    [SerializeField]
+    private GameEvent<int> _onShrunk;
+
+    [SerializeField]
+    private GameEvent<int> _onGrown;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +50,7 @@ public class PlayerShrinking : MonoBehaviour
             
                 if(light_beam.transform.localScale == _shrinkSize_light_sourse)
                 {
+                    _onShrunk.Raise(0);
                     _keyPressed = false;
                     _currentState = Shrunk;
                 }
@@ -55,7 +62,9 @@ public class PlayerShrinking : MonoBehaviour
 
     void Shrunk()
     {
+
         _currentState = Growing;
+        
     }
 
     private void Growing()
@@ -67,6 +76,7 @@ public class PlayerShrinking : MonoBehaviour
            
                 if(light_beam.transform.localScale == _originalSize_light_sourse)
                 {
+                    _onGrown.Raise(0);
                     _keyPressed = false;
                     _currentState = Grown;
                 }
@@ -76,6 +86,7 @@ public class PlayerShrinking : MonoBehaviour
 
     void Grown()
     {
+
         _currentState = Shrinking;
     }
     void LerpToSize(Vector3 toSize, Vector3 originalSize)
