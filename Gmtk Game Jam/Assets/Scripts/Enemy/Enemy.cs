@@ -6,36 +6,36 @@ public class Enemy : MonoBehaviour
 {
 
     [Header("Torpedo Settings")]
-    [SerializeField] private GameObject torpedoPrefab;
-    [SerializeField] private Transform torpedoSpawnPoint;
+    [SerializeField] private GameObject _torpedoPrefab;
+    [SerializeField] private Transform _torpedoSpawnPoint;
 
     [Header("AI Settings")]
-    [SerializeField] private float chaseRange;
-    [SerializeField] private float attackRange;
+    [SerializeField] private float _chaseRange;
+    [SerializeField] private float _attackRange;
 
-    private EnemyAI enemyAI;
+    private EnemyAI _enemyAI;
 
     [Header("Movement Settings")]
-    [SerializeField] private EnemyType enemyType;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float rotationSpeed;
-    [SerializeField] private bool chasePlayer = false;
-    [SerializeField] private Transform player;
+    [SerializeField] private EnemyType _enemyType;
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _rotationSpeed;
+    [SerializeField] private bool _chasePlayer = false;
+    [SerializeField] private Transform _player;
 
-    private EnemyMovement enemyMovement;
+    private EnemyMovement _enemyMovement;
 
     [Header("Attack Settings")]
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float nextAttackTime;
-    [SerializeField] private bool canAttack = false;
+    [SerializeField] private float _attackCooldown;
+    [SerializeField] private float _nextAttackTime;
+    [SerializeField] private bool _canAttack = false;
 
-    private EnemyAttack enemyAttack;
+    private EnemyAttack _enemyAttack;
 
     private void Awake()
     {
-        enemyAI = GetComponent<EnemyAI>();
-        enemyMovement = GetComponent<EnemyMovement>();
-        enemyAttack = GetComponent<EnemyAttack>();
+        _enemyAI = GetComponent<EnemyAI>();
+        _enemyMovement = GetComponent<EnemyMovement>();
+        _enemyAttack = GetComponent<EnemyAttack>();
 
         InitializeComponents();
     }
@@ -43,13 +43,13 @@ public class Enemy : MonoBehaviour
     private void InitializeComponents()
     {
         // Initialize AI component
-        enemyAI.Initialize(this, chaseRange, attackRange);
+        _enemyAI.Initialize(this, _chaseRange, _attackRange);
 
         // Initialize Movement component
-        enemyMovement.Initialize(this, moveSpeed, rotationSpeed, enemyType, player);
+        _enemyMovement.Initialize(this, _moveSpeed, _rotationSpeed, _enemyType, _player);
 
         // Initialize Attack component
-        enemyAttack.Initialize(this, attackCooldown, nextAttackTime);
+        _enemyAttack.Initialize(this, _attackCooldown, _nextAttackTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -58,39 +58,39 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             // Set the enemy to the idle state
-            enemyAI.SetState(EnemyState.IDLE);
+            _enemyAI.SetState(EnemyState.IDLE);
             // Stop movement
-            enemyMovement.chasePlayer = false;
+            _enemyMovement.chasePlayer = false;
         }
     }
 
     public GameObject GetTorpedoPrefab()
     {
-        return torpedoPrefab;
+        return _torpedoPrefab;
     }
 
     public Transform GetTorpedoSpawnPoint()
     {
-        return torpedoSpawnPoint;
+        return _torpedoSpawnPoint;
     }
 
     public Transform GetPlayer()
     {
-        return player;
+        return _player;
     }
 
     public EnemyAttack GetEnemyAttack()
     {
-        return enemyAttack;
+        return _enemyAttack;
     }
 
     public EnemyAI GetEnemyAI()
     {
-        return enemyAI;
+        return _enemyAI;
     }
 
     public EnemyMovement GetEnemyMovement()
     {
-        return enemyMovement;
+        return _enemyMovement;
     }
 }

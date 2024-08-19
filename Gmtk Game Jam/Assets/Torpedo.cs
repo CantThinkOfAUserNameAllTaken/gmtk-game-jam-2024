@@ -4,92 +4,73 @@ using UnityEngine;
 
 public class Torpedo : MonoBehaviour
 {
-    public enum TorpedoState
-    {
-        Launching,
-        Fired,
-        Contact
-    }
 
-    public TorpedoState currentState = TorpedoState.Launching;
+    [SerializeField]
+    private float _initialMoveTime = 0.5f;
+    [SerializeField]
+    private float _initialMoveSpeed = 0.5f;
+    [SerializeField]
+    private float _moveSpeed = 5f;
+    [SerializeField]
+    private float _rotateSpeed = 1f;
+    [SerializeField]
+    private float _lifeSpan = 5f; 
 
-    private Vector3 targetPosition;
-    public float initialMoveTime = 0.5f;
-    public float initialMoveSpeed = 0.5f;
-    public float moveSpeed = 5f;
+    private Rigidbody2D _rb;
+    private Vector3 _targetPosition;
+    private bool _isLockedOn; 
 
-    private Rigidbody2D rb;
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(HandleLaunching());
+        _rb = GetComponent<Rigidbody2D>();
+
+        GetTargetPosition();
+
+        _isLockedOn = false;
+        StartCoroutine(InitialMovement());
     }
-    public void SetTargetPosition(Vector3 targetPos)
+    public void GetTargetPosition()
     {
-        targetPosition = targetPos;
+        _targetPosition = FindObjectOfType<PlayerHealth>().gameObject.transform.position;
     }
 
-    private IEnumerator HandleLaunching()
+    private IEnumerator InitialMovement()
     {
-        // While in the Launching state, move up slowly
-        Vector3 initialPosition = transform.position;
-        float elapsedTime = 0;
-
-        while (elapsedTime < initialMoveTime && currentState == TorpedoState.Launching)
+        if (!_isLockedOn)
         {
-            transform.position = Vector3.Lerp(initialPosition, initialPosition + Vector3.up * initialMoveSpeed, elapsedTime / initialMoveTime);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+            float elapsedTime = 0f;
 
-        // Transition to the Fired state
-        currentState = TorpedoState.Fired;
-        HandleFired();
-    }
-
-    private void HandleFired()
-    {
-        // Once in the Fired state, move towards the target position
-        StartCoroutine(MoveTowardsTarget());
-    }
-
-    private IEnumerator MoveTowardsTarget()
-    {
-        while (currentState == TorpedoState.Fired)
-        {
-            Vector3 direction = (targetPosition - transform.position).normalized;
-            rb.velocity = direction * moveSpeed;
-
-            // Check if close to the target position
-            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+            while (elapsedTime < _initialMoveTime)
             {
-                currentState = TorpedoState.Contact;
-                HandleContact();
+                _rb.velocity = Vector2.up * _initialMoveSpeed;
+                elapsedTime += Time.deltaTime;
+                yield return null;
             }
 
-            yield return null;
+            // Stop the upward movement and lock onto the target
+            _rb.velocity = Vector2.zero;
+            _isLockedOn = true;
         }
     }
-
-    private void HandleContact()
+    private void FixedUpdate()
     {
-        // Stop the torpedo
-        rb.velocity = Vector3.zero;
-
-        // Add effects or damage logic here for when the torpedo hits the target
-        // For example, you could play an explosion animation or deal damage to the player
-
-        // Destroy the torpedo after contact
-        Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        // Check if the torpedo hits something (e.g., the player or an obstacle)
-        if (currentState == TorpedoState.Fired)
+        if (_isLockedOn)
         {
-            currentState = TorpedoState.Contact;
-            HandleContact();
+            GetTargetPosition();
+            Vector2 direction = (Vector2)_targetPosition - _rb.position;
+
+            direction.Normalize();
+
+            float rotateAmount = Vector3.Cross(direction, transform.up).z;
+            _rb.angularVelocity = -rotateAmount * _rotateSpeed;
+
+            _rb.velocity = transform.up * _moveSpeed;
         }
+
+    }
+
+    void OnTriggerEnter2D()
+    {
+        Destroy(gameObject);
     }
 }

@@ -6,20 +6,20 @@ public class EnemyAI : MonoBehaviour
 {
 
     public EnemyState currentState;
-    private Transform player;
-    private float chaseRange;
-    private float attackRange;
+    private Transform _player;
+    private float _chaseRange;
+    private float _attackRange;
 
-    private Enemy enemy;
+    private Enemy _enemy;
 
     public void Initialize(Enemy enemyReference, float chaseRangeVal, float attackRangeVal)
     {
-        enemy = enemyReference;
+        _enemy = enemyReference;
         currentState = EnemyState.IDLE;
-        chaseRange = chaseRangeVal;
-        attackRange = attackRangeVal;
+        _chaseRange = chaseRangeVal;
+        _attackRange = attackRangeVal;
 
-        player = enemy.GetPlayer();
+        _player = _enemy.GetPlayer();
     }
 
     void Update()
@@ -51,34 +51,34 @@ public class EnemyAI : MonoBehaviour
     void HandleIdleState()
     {
         // Remain still
-        enemy.GetEnemyMovement().chasePlayer = false;
+        _enemy.GetEnemyMovement().chasePlayer = false;
     }
 
     void HandleChaseState()
     {
         // Move towards the player
-        if (enemy.GetEnemyMovement().canEnemyMove)
+        if (_enemy.GetEnemyMovement().canEnemyMove)
         {
-            enemy.GetEnemyMovement().chasePlayer = true;
+            _enemy.GetEnemyMovement().chasePlayer = true;
         }
     }
 
     void HandleAttackState()
     {
         // Attack logic goes here
-        enemy.GetEnemyMovement().chasePlayer = false;
-        enemy.GetEnemyAttack().SetCanAttack(true);
+        _enemy.GetEnemyMovement().chasePlayer = false;
+        _enemy.GetEnemyAttack().SetCanAttack(true);
     }
 
     void StateChange()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
 
-        if (distanceToPlayer <= attackRange)
+        if (distanceToPlayer <= _attackRange)
         {
             SetState(EnemyState.ATTACK);
         }
-        else if (distanceToPlayer <= chaseRange)
+        else if (distanceToPlayer <= _chaseRange && distanceToPlayer> _attackRange)
         {
             SetState(EnemyState.CHASE);
         }
