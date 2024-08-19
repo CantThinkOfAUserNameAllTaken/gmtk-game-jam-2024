@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 394633652}
   - component: {fileID: 394633651}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 902289959}
   - component: {fileID: 902289960}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,7 +954,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1640515420}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -994,7 +994,8 @@ GameObject:
   - component: {fileID: 1716870169}
   - component: {fileID: 1716870170}
   - component: {fileID: 1716870171}
-  m_Layer: 0
+  - component: {fileID: 1716870172}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1135,6 +1136,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: cb0bf7c6-5518-46f8-b3cd-d415c144489d
     m_ActionName: 'KeyBoard/movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1716870172}
+        m_TargetAssemblyTypeName: PlayerFireProjectile, Assembly-CSharp
+        m_MethodName: SpawnProjectile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f37d4728-814d-4097-bc38-f24d688bb53f
+    m_ActionName: 'KeyBoard/Shoot[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: KeyBoard
@@ -1213,10 +1230,10 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 119
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -1237,6 +1254,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.85, y: 0.85}
   m_Direction: 0
+--- !u!114 &1716870172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716870163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97d79ebd97b2214d9b74dcdac64e29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectile: {fileID: 8890506178336879488, guid: e2e43f8cc92ac1046aca08d95acd2482, type: 3}
 --- !u!1 &1801516717
 GameObject:
   m_ObjectHideFlags: 0
