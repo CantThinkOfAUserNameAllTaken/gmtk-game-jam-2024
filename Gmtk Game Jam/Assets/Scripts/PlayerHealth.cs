@@ -25,12 +25,26 @@ public class PlayerHealth : BaseHealth
 
     [SerializeField]
     private intVariable _sceneOnDeath;
+
+    [SerializeField]
+    private GameObjectList _PlayerList;
     // Start is called before the first frame update
-  protected override void Start()
+    protected override void Start()
     {
         base.Start();
         OnHealthDecrease += ImmunityPeriod;
         OnHealthChanged += UpdateHealthBar;
+
+    }
+
+    private void OnEnable()
+    {
+        _PlayerList.Register(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        _PlayerList.UnRegister(gameObject);
     }
 
     async void ImmunityPeriod()
@@ -67,6 +81,7 @@ public class PlayerHealth : BaseHealth
 
     protected override void Death()
     {
+        base.Death();
         _sceneOnDeath.HeldData = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }

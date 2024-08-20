@@ -11,11 +11,14 @@ public class EnemyAttack : MonoBehaviour
 
     private Enemy _enemy;
 
-    public void Initialize(Enemy enemyReference, float attackCooldownVal, float nextAttackTimeVal)
+    private AudioList _audioList;
+
+    public void Initialize(Enemy enemyReference, float attackCooldownVal, float nextAttackTimeVal, AudioList audio)
     {
         _enemy = enemyReference;
         _attackCooldown = attackCooldownVal;
         _nextAttackTime = nextAttackTimeVal;
+        _audioList = audio;
     }
 
     void Update()
@@ -34,6 +37,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void Attack()
     {
+        _audioList.PlaySound("Shooting", gameObject);
         GameObject torpedo = Instantiate(_enemy.GetTorpedoPrefab(), _enemy.GetTorpedoSpawnPoint().position, Quaternion.identity);
     }
 }

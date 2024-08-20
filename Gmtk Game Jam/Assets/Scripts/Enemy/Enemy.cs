@@ -20,7 +20,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private bool _chasePlayer = false;
-    [SerializeField] private Transform _player;
+    [SerializeField]
+    private GameObjectList _playerList;
+
+    private Transform _player;
 
     private EnemyNavMesh _enemyMovement;
 
@@ -31,6 +34,13 @@ public class Enemy : MonoBehaviour
 
     private EnemyAttack _enemyAttack;
 
+    [SerializeField]
+    private AudioList _attackAudioList;
+
+    private void Start()
+    {
+        _player = _playerList.GetItemAtIndex(0).transform;
+    }
     private void Awake()
     {
         _enemyAI = GetComponent<EnemyAI>();
@@ -46,7 +56,7 @@ public class Enemy : MonoBehaviour
         _enemyAI.Initialize(this, _chaseRange, _attackRange);
 
         // Initialize Attack component
-        _enemyAttack.Initialize(this, _attackCooldown, _nextAttackTime);
+        _enemyAttack.Initialize(this, _attackCooldown, _nextAttackTime, _attackAudioList);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
