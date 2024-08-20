@@ -360,10 +360,11 @@ MonoBehaviour:
   _moveSpeed: 3
   _rotationSpeed: 3
   _chasePlayer: 0
-  _player: {fileID: 0}
+  _playerList: {fileID: 11400000, guid: 3f2f36b7e69e8914aa43f6fb86016114, type: 2}
   _attackCooldown: 4
   _nextAttackTime: 0
   _canAttack: 0
+  _attackAudioList: {fileID: 11400000, guid: 36cc3724880be034a818847bc5fe7ac0, type: 2}
 --- !u!114 &891057990166421464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,6 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 2
+  _audioList: {fileID: 11400000, guid: 36cc3724880be034a818847bc5fe7ac0, type: 2}
 --- !u!114 &1936986807725112983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd67de2cdc492b4894d039a9975eeed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
+  player: {fileID: 11400000, guid: 3f2f36b7e69e8914aa43f6fb86016114, type: 2}
   chasePlayer: 0
   canEnemyMove: 1
 --- !u!195 &6474381769220001199

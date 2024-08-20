@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerFireProjectile : MonoBehaviour
@@ -13,7 +10,17 @@ public class PlayerFireProjectile : MonoBehaviour
 
     private float _timeLastShot = -888;
 
-    private enum SizeState 
+    [SerializeField]
+    private AudioList _playerAudioList;
+
+    private AudioSource _playerAudioSource;
+
+    private void Start()
+    {
+        _playerAudioSource = GetComponent<AudioSource>();
+    }
+
+    private enum SizeState
     {
         Grown,
         Shrunk
@@ -26,6 +33,7 @@ public class PlayerFireProjectile : MonoBehaviour
         if (_state == SizeState.Grown && Time.time - _shootingDelay > _timeLastShot)
         {
             _timeLastShot = Time.time;
+            _playerAudioList.PlaySound("PlayerShooting", gameObject);
             Instantiate(_projectile, transform.position, Quaternion.identity);
         }
 

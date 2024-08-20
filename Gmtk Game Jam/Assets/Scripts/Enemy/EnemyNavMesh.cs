@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class EnemyNavMesh : MonoBehaviour
 {
     [SerializeField]
+    private GameObjectList player;
+
     private Transform _target;
 
     private NavMeshAgent _agent;
@@ -19,6 +21,7 @@ public class EnemyNavMesh : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _agent.updateUpAxis = false;
         _agent.updateRotation = false;
+        _target = player.GetItemAtIndex(0).transform;
     }
 
     // Update is called once per frame

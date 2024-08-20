@@ -6,22 +6,22 @@ public abstract class BaseRunTimeSet<T> : ScriptableObject
 {
     private List<T> _runTimeList;
 
-    void Register(T t)
+    public void Register(T t)
     {
         _runTimeList.Add(t);
     }
 
-    void UnRegister(T t)
+    public void UnRegister(T t)
     {
         _runTimeList.Remove(t);
     }
 
-    List<T> GetList()
+    public List<T> GetList()
     {
         return _runTimeList;
     }
 
-    T GetItemAtIndex(int index)
+    public T GetItemAtIndex(int index)
     {
         return _runTimeList[index];
     }

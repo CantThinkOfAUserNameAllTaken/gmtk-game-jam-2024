@@ -122,6 +122,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -129,12 +142,12 @@ TextureImporter:
       name: Door_Sprite_Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1273
-        height: 452
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 60
+        y: 42
+        width: 153
+        height: 357
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -146,10 +159,73 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Door_Sprite_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 41
+        width: 155
+        height: 361
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54d19003805cd60439ecc4283a4e8b48
+      internalID: 379348621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Sprite_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 40
+        width: 158
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 647c9b8c374775448bb8ece5c0e4321b
+      internalID: -1190203679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Sprite_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 38
+        width: 155
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0f06d2bb03579943b94e284eb78427d
+      internalID: -889803002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 844e200e8a591fe45aa97a244731656e
     internalID: 0
     vertices: []
     indices: 
@@ -158,6 +234,9 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Door_Sprite_Sheet_0: 7404846446215549268
+      Door_Sprite_Sheet_1: 379348621
+      Door_Sprite_Sheet_2: -1190203679
+      Door_Sprite_Sheet_3: -889803002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

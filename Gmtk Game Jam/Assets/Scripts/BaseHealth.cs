@@ -19,6 +19,9 @@ public abstract class BaseHealth : MonoBehaviour
     public Event OnHealthIncrease;
 
     public Event OnHealthDecrease;
+
+    [SerializeField]
+    private AudioList _audioList;
     // Start is called before the first frame update
 
     // Start is called before the first frame update
@@ -45,12 +48,15 @@ public abstract class BaseHealth : MonoBehaviour
         OnHealthIncrease();
     }
 
-    protected abstract void Death();
-    
+    protected virtual void Death()
+    {
+        _audioList.PlaySound("Death", gameObject);
+    }
 
-    
-    // Update is called once per frame
-    void Update()
+
+
+        // Update is called once per frame
+        void Update()
     {
         
     }

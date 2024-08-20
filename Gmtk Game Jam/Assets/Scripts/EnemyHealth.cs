@@ -12,6 +12,7 @@ public class EnemyHealth : BaseHealth
 
     protected override void Death()
     {
+        base.Death();
         Destroy(gameObject);
     }
     // Update is called once per frame
