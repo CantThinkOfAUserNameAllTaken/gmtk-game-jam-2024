@@ -82,11 +82,11 @@ public class PlayerHealth : BaseHealth
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - 5 > time)
+        /*if (Time.time - 5 > time)
         {
             DamageTaken(10);
             time = Time.time;
-        }
+        }*/
         if (OnUpdate != null)
         {
             OnUpdate();

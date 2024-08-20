@@ -44,6 +44,15 @@ public partial class @Controlls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""f37d4728-814d-4097-bc38-f24d688bb53f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +121,17 @@ public partial class @Controlls: IInputActionCollection2, IDisposable
                     ""action"": ""movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f9727d7-69f6-4b12-883e-0de5a3895827"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -125,6 +145,11 @@ public partial class @Controlls: IInputActionCollection2, IDisposable
                     ""devicePath"": ""<Keyboard>"",
                     ""isOptional"": false,
                     ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
                 }
             ]
         }
@@ -134,6 +159,7 @@ public partial class @Controlls: IInputActionCollection2, IDisposable
         m_KeyBoard = asset.FindActionMap("KeyBoard", throwIfNotFound: true);
         m_KeyBoard_Shrink = m_KeyBoard.FindAction("Shrink", throwIfNotFound: true);
         m_KeyBoard_movement = m_KeyBoard.FindAction("movement", throwIfNotFound: true);
+        m_KeyBoard_Shoot = m_KeyBoard.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -197,12 +223,14 @@ public partial class @Controlls: IInputActionCollection2, IDisposable
     private List<IKeyBoardActions> m_KeyBoardActionsCallbackInterfaces = new List<IKeyBoardActions>();
     private readonly InputAction m_KeyBoard_Shrink;
     private readonly InputAction m_KeyBoard_movement;
+    private readonly InputAction m_KeyBoard_Shoot;
     public struct KeyBoardActions
     {
         private @Controlls m_Wrapper;
         public KeyBoardActions(@Controlls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Shrink => m_Wrapper.m_KeyBoard_Shrink;
         public InputAction @movement => m_Wrapper.m_KeyBoard_movement;
+        public InputAction @Shoot => m_Wrapper.m_KeyBoard_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_KeyBoard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -218,6 +246,9 @@ public partial class @Controlls: IInputActionCollection2, IDisposable
             @movement.started += instance.OnMovement;
             @movement.performed += instance.OnMovement;
             @movement.canceled += instance.OnMovement;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
         }
 
         private void UnregisterCallbacks(IKeyBoardActions instance)
@@ -228,6 +259,9 @@ public partial class @Controlls: IInputActionCollection2, IDisposable
             @movement.started -= instance.OnMovement;
             @movement.performed -= instance.OnMovement;
             @movement.canceled -= instance.OnMovement;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
         }
 
         public void RemoveCallbacks(IKeyBoardActions instance)
@@ -258,5 +292,6 @@ public partial class @Controlls: IInputActionCollection2, IDisposable
     {
         void OnShrink(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }
