@@ -36,6 +36,7 @@ public class PlayerShrinking : MonoBehaviour
     [SerializeField]
     LayerMask _layerToHit;
 
+    public movement mov;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +50,7 @@ public class PlayerShrinking : MonoBehaviour
     {
         LerpToSize(_shrinkSize, transform.localScale);
         Light_LerpSize(_shrinkSize_light_sourse, light_beam.transform.localScale);
+        mov.speed = 30;
         if (transform.localScale == _shrinkSize)
         {
             
@@ -75,6 +77,7 @@ public class PlayerShrinking : MonoBehaviour
     {
         LerpToSize(_originalSize, transform.localScale);
         Light_LerpSize(_originalSize_light_sourse, light_beam.transform.localScale);
+        mov.speed = 5;
         if (transform.localScale == _originalSize)
         {
            
@@ -90,7 +93,7 @@ public class PlayerShrinking : MonoBehaviour
 
     void Grown()
     {
-
+        
         _currentState = Shrinking;
     }
     void LerpToSize(Vector3 toSize, Vector3 originalSize)
