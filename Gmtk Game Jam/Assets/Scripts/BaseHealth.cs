@@ -37,8 +37,16 @@ public abstract class BaseHealth : MonoBehaviour
         {
             Death();
         }
-        OnHealthChanged();
-        OnHealthDecrease();
+        if (OnHealthChanged != null)
+        {
+            OnHealthChanged();
+        }
+        if (OnHealthDecrease != null)
+        {
+
+            OnHealthDecrease();
+        }
+
     }
 
     public void Heal(int healAmount)

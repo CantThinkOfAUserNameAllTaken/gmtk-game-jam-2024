@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour
     {
         if (IsTagInArray(collision.gameObject.tag))
         {
-            GetComponent<BaseHealth>().DamageTaken(_damage);
+            collision.gameObject.GetComponent<EnemyHealth>().DamageTaken(_damage);
         }
         Destroy(gameObject);
     }
